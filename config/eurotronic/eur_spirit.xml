@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<!-- 
+	Thermostatic Valve
+	Spirit Z-Wave Plus is a Z-Wave radio standard compatible energy-saving radiator thermostat.
+	FLiRS (Frequently Listening Receiver Slave): Spirit Z-Wave uses FLiRS to provide short latency and short responding times.
+	Start Inclusion mode of your primary Z-Wave Controller. Press the Boost-Button. Spirit Z-Wave Plus will show the assigned NodeID.
+	Start Exclusion mode of your primary Z-Wave Controller. Now press and hold the boost button of the Spirit Z-Wave Plus for at least 5 seconds.
+	-->
+	<CommandClass id="64" >
+		<Instance index="1" />
+		<Value type="list" genre="user" index="0" label="Mode" min="0" max="31" value="0" size="1">
+			<Item label="Off" value="0" />
+			<Item label="Heat" value="1" />
+			<Item label="Heat Econ" value="11" />
+			<Item label="Full Power" value="15" />
+			<Item label="Manual (valve opening percent)" value="31" />
+		</Value>
+		<SupportedModes>
+			<Mode index="0" label="Off" />
+			<Mode index="1" label="Heat" />
+			<Mode index="11" label="Heat Econ" />
+			<Mode index="15" label="Full Power" />
+			<Mode index="31" label="Manual (valve opening percent)" />
+		</SupportedModes>
+	</CommandClass>
+	<CommandClass id="67" base="0">
+		<Instance index="1" />
+		<Value type="decimal" genre="user" index="1" label="Comfort setpoint" units="°C/F" min="8" max="28" value="8"/>
+		<Value type="decimal" genre="user" index="7" label="Energy heat setpoint" units="°C/F" min="8" max="28" value="8"/>
+		<Value type="decimal" genre="user" index="11" label="Energy saving setpoint" units="°C/F" min="8" max="28" value="8"/>
+	</CommandClass>
+	<CommandClass id="38">
+		<Instance index="1" />
+		<Value type="decimal" genre="user" index="1" label="Dimmer" value="0"/>
+	</CommandClass>
+	<CommandClass id="49">
+		<Instance index="1" />
+		<Value type="decimal" genre="user" index="1" label="Current temperature" value="0"/>
+	</CommandClass>
+	<CommandClass id="128">
+		<Instance index="1" />
+		<Value type="decimal" genre="user" index="1" label="Battery percent" value="0"/>
+	</CommandClass>
+	<CommandClass id="113">
+		<Instance index="1" />
+		<Value type="bool" genre="user" index="9" label="Alarm (system)" value="0"/>
+		<Value type="bool" genre="user" index="8" label="Alarm (power management)" value="0"/>
+	</CommandClass>
+	<CommandClass id="133">
+        <Associations num_groups="1">
+            <Group index="1" max_associations="5" label="Lifeline"/>
+        </Associations>
+    </CommandClass>
+	<!--Configuration-->
+	<CommandClass id="112">
+		<Value type="list" index="1" genre="config" label="LCD invert" units="" min="0" max="1" value="0">
+			<Item label="LCD-content normal" value="0" />
+			<Item label="LCD-content inverted (UK Edition)" value="1" />
+		</Value>
+		<Value type="int" index="2" genre="config" label="LCD Timeout" units="" min="0" max="30" value="0">
+			<Help>
+				0: No Timeout - always on
+				5-30: Seconds to timeout
+			</Help>
+		</Value>
+		<Value type="list" index="3" genre="config" label="Backlight" units="" min="0" max="1" value="0">
+			<Item label="Backlight disabled" value="0" />
+			<Item label="Backlight enabled" value="1" />
+		</Value>
+		<Value type="list" index="4" genre="config" label="Battery report" units="" min="0" max="1" value="1">
+			<Item label="system notification" value="0" />
+			<Item label="Send battery status unsolicited once a day" value="1" />
+		</Value>
+		<Value type="int" index="5" genre="config" label="Measured Temperature report" units="" min="0" max="50" value="5">
+			<Help>
+				Send new temperature if changed more than x*0.1 degrees Fahrenheit/Celsius
+			</Help>
+		</Value>
+		<Value type="int" index="6" genre="config" label="Valve opening percentage report" units="" min="0" max="100" value="0">
+			<Help>
+				Send new valve opening percentage if changed more than x percent
+			</Help>
+		</Value>
+		<Value type="list" index="7" genre="config" label="Window open detection sensitivity" units="" min="0" max="3" value="2">
+			<Item label="Disabled" value="0" />
+			<Item label="Sensitivity low" value="1" />
+			<Item label="Sensitivity medium" value="2" />
+			<Item label="Sensitivity high" value="3" />
+		</Value>
+		<Value type="int" index="8" genre="config" label="Measured temperature offset" units="°C/F" min="-50" max="50" value="0">
+			<Help>
+				Offset added to measured temperature
+				128: External temperature sensor will be used for regulation
+			</Help>
+		</Value>
+	</CommandClass>
+</Product>
